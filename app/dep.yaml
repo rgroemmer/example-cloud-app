@@ -17,14 +17,12 @@ spec:
     spec:
       containers:
       - name: notebook
-        image: myjob:latest
         env:
         - name: CONNECTION_STR
           valueFrom:
-            # TODO: from crossplane secret
             secretKeyRef:
               name: notebook
-              key: DB_HOST
+              key: attribute.uri
         ports:
         - containerPort: 8080
           name: http
