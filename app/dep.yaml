@@ -17,11 +17,12 @@ spec:
     spec:
       containers:
       - name: notebook
+        image: reg3.infra.ske.eu01.stackit.cloud/example/cloud-app/three-tier-app-14fcb8f71f2eabd30fe9f72bd9bce90b@sha256:5f3ac0b174fe9a35ba7db764045163360a66d1ff72abcc0fc394f326e2eb2745
         env:
         - name: CONNECTION_STR
           valueFrom:
             secretKeyRef:
-              name: notebook
+              name: notebook-db-creds
               key: attribute.uri
         ports:
         - containerPort: 8080
