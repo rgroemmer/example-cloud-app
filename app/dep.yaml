@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: notebook
+  namespace: default
+  labels:
+    app: notebook
+spec:
+  selector:
+    matchLabels:
+      app: notebook
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: notebook
+    spec:
+      containers:
+      - name: notebook
+        image: myjob:latest
+        env:
+        - name: CONNECTION_STR
+          valueFrom:
+            # TODO: from crossplane secret
+            secretKeyRef:
+              name: notebook
+              key: DB_HOST
+        ports:
+        - containerPort: 8080
+          name: http
+
