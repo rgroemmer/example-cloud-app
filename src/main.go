@@ -39,7 +39,7 @@ type config struct {
 
 func main() {
 	cfg, err := env.ParseAs[config]()
-	pgConnStr := fmt.Sprintf("dbname=%s user=%s password=%s host=%s port=%d", cfg.Database.Name, cfg.Database.Username, cfg.Database.Password, cfg.Database.Host, cfg.Database.Host)
+	pgConnStr := fmt.Sprintf("dbname=%s user=%s password=%s host=%s port=%d", cfg.Database.Name, cfg.Database.Username, cfg.Database.Password, cfg.Database.Host, cfg.Database.Port)
 	conn, err := sql.Open("postgres", pgConnStr)
 	if err != nil {
 		log.Fatalf("Error opening database connection: %v", err)
