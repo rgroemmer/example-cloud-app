@@ -40,4 +40,20 @@ spec:
   writeConnectionSecretToRef:
     namespace: default
     name: notebook-db-creds
-
+---
+apiVersion: postgresflex.stackit.cloud/v1alpha1
+kind: Database
+metadata:
+  labels:
+    app: notebook
+  name: notebook
+spec:
+  forProvider:
+    instanceIdSelector:
+      matchLabels:
+        app: notebook
+    projectId: 49d2999f-e391-4c14-98be-8f516d38e313
+    name: notebook2
+    ownerSelector: 
+      matchLabels:
+        app: notebook
