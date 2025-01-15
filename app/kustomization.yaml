@@ -3,3 +3,4 @@ kind: Kustomization
 resources:
   - dep.yaml
   - svc.yaml
+  - db.yaml
