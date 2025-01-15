@@ -1,0 +1,8 @@
+apiVersion: pkg.crossplane.io/v1
+kind: Provider
+metadata:
+  name: provider-stackit
+spec:
+  package: reg3.infra.ske.eu01.stackit.cloud/crossplane/xpkg/crossplane-provider-stackit:latest
+  packagePullPolicy: Always
+
