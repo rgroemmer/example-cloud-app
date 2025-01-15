@@ -10,6 +10,11 @@ spec:
     name: example-cloud-app
   path: crossplane
   prune: true
+  healthChecks:
+    - apiVersion: apps/v1
+      kind: Deployment
+      name: crossplane
+      namespace: crossplane-system
 ---
 apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
