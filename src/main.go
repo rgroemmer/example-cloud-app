@@ -8,9 +8,8 @@ import (
 	"html/template"
 	"log"
 	"net/http"
-	"os"
-	"strings"
 
+	"github.com/caarlos0/env/v11"
 	_ "github.com/lib/pq"
 )
 
@@ -28,28 +27,19 @@ type Note struct {
 	Content string `json:"content"`
 }
 
+type config struct {
+	Database struct {
+		Host     string `env:"HOST,required"`
+		Password string `env:"PASSWORD,required"`
+		Username string `env:"USERNAME,required"`
+		Port     int    `env:"PORT,required"`
+		Name     string `env:"NAME,required"`
+	} `envPrefix:"DB_"`
+}
+
 func main() {
-	pgConnStr := os.Getenv("CONNECTION_STR")
-	if pgConnStr == "" {
-		log.Fatal("Error: CONNECTION_STR must be set.")
-	}
-	databaseStrIndex := strings.LastIndex(pgConnStr, "/")
-
-	// // Connect to postgres database
-	// pgConnStr = fmt.Sprint(pgConnStr[:databaseStrIndex+1], "postgres")
-	//
-	// conn, err := sql.Open("postgres", pgConnStr)
-	// if err != nil {
-	// 	log.Fatalf("Error opening database connection: %v", err)
-	// }
-	//
-	// // Check & create database
-	// db = conn
-	defer db.Close()
-
-	// createDatabase()
-
-	pgConnStr = fmt.Sprint(pgConnStr[:databaseStrIndex+1], databaseName)
+	cfg, err := env.ParseAs[config]()
+	pgConnStr := fmt.Sprintf("dbname=%s user=%s password=%s host=%s port=%d", cfg.Database.Name, cfg.Database.Username, cfg.Database.Password, cfg.Database.Host, cfg.Database.Host)
 	conn, err := sql.Open("postgres", pgConnStr)
 	if err != nil {
 		log.Fatalf("Error opening database connection: %v", err)

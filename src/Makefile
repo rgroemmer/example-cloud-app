@@ -1,0 +1,2 @@
+container:
+	ko build --bare ./

@@ -57,3 +57,6 @@ spec:
     ownerSelector: 
       matchLabels:
         app: notebook
+  writeConnectionSecretToRef:
+    namespace: default
+    name: notebook-db-name
