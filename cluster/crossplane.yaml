@@ -14,12 +14,14 @@ spec:
 apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
 metadata:
-  name: crossplane-stackit-config
+  name: crossplane-provider-stackit
   namespace: flux-system
 spec:
   interval: 1m0s
+  dependsOn:
+    - name: crossplane
   sourceRef:
     kind: GitRepository
     name: example-cloud-app
-  path: crossplane/provider-stackit/config
+  path: crossplane/provider-stackit
   prune: true
