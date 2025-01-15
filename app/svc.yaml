@@ -2,7 +2,7 @@ apiVersion: v1
 kind: Service
 metadata:
   annotations:
-    external-dns.alpha.kubernetes.io/hostname: app.project212a.runs.onstackit.cloud
+    external-dns.alpha.kubernetes.io/hostname: myapp.project212a.runs.onstackit.cloud
   name: notebook
   namespace: default
 spec:
@@ -10,6 +10,5 @@ spec:
     app: notebook
   type: LoadBalancer
   ports:
-  - name: notebook
-    port: 8080
-
+    - name: notebook
+      port: 8080
