@@ -12,7 +12,7 @@ spec:
     flavor:
       cpu: 2
       ram: 4
-    name: notebook
+    name: notebook-demo
     projectId: 49d2999f-e391-4c14-98be-8f516d38e313
     replicas: 1
     storage:
@@ -53,7 +53,7 @@ spec:
       matchLabels:
         app: notebook
     projectId: 49d2999f-e391-4c14-98be-8f516d38e313
-    name: notebook2
+    name: notebook
     ownerSelector: 
       matchLabels:
         app: notebook
